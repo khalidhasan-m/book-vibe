@@ -4,6 +4,7 @@ import Homepage from "../pages/homepage/Homepage";
 import Books from "../pages/books/Books";
 import Errorpage from "../pages/errorpage/Errorpage";
 import BookDetails from "../pages/bookDetails/BookDetails";
+import PageToRead from "../pages/pageToRead/PageToRead";
 import booksData from "../data/booksData.json";
 
 export const router = createHashRouter([
@@ -21,7 +22,7 @@ export const router = createHashRouter([
       },
       {
         path: "/page-to-read",
-        element: <Books />,
+        element: <PageToRead />,
       },
       {
         path: "/bookDetails/:id",

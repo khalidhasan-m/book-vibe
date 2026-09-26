@@ -11,23 +11,36 @@ const Books = () => {
   const [sortingType, setSortingType] = useState("");
   return (
     <div className="container mx-auto mt-13">
-      <div className="flex justify-center my-3">
-        <div className="dropdown dropdown-start">
-          <div tabIndex={0} role="button" className="btn m-1">
-            Sort by
-          </div>
-          <ul
-            tabIndex="-1"
-            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+      <div className="flex justify-center items-center my-3 gap-2 flex-wrap">
+        <span className="font-medium">Sort by:</span>
+        <button
+          className={`btn btn-sm ${
+            sortingType === "Pages"
+              ? "btn-success text-white"
+              : "btn-outline btn-success"
+          }`}
+          onClick={() => setSortingType("Pages")}
+        >
+          Pages
+        </button>
+        <button
+          className={`btn btn-sm ${
+            sortingType === "Rating"
+              ? "btn-success text-white"
+              : "btn-outline btn-success"
+          }`}
+          onClick={() => setSortingType("Rating")}
+        >
+          Rating
+        </button>
+        {sortingType && (
+          <button
+            className="btn btn-sm btn-ghost"
+            onClick={() => setSortingType("")}
           >
-            <li onClick={() => setSortingType("Pages")}>
-              <a>Pages</a>
-            </li>
-            <li onClick={() => setSortingType("Rating")}>
-              <a>Rating</a>
-            </li>
-          </ul>
-        </div>
+            Clear
+          </button>
+        )}
       </div>
 
       <Tabs>

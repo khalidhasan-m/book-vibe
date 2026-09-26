@@ -7,7 +7,6 @@ import WishListBook from "../../components/listedBooks/WishListBook";
 
 const Books = () => {
   const { storedBook, wishList } = useContext(BookContext);
-  console.log(storedBook, wishList, "BookContext");
 
   const [sortingType, setSortingType] = useState("");
   return (
@@ -15,7 +14,7 @@ const Books = () => {
       <div className="flex justify-center my-3">
         <div className="dropdown dropdown-start">
           <div tabIndex={0} role="button" className="btn m-1">
-            Click
+            Sort by
           </div>
           <ul
             tabIndex="-1"

@@ -1,12 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BookContext = createContext();
 
+const loadList = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key)) ?? [];
+  } catch {
+    return [];
+  }
+};
+
 const BookProvider = ({ children }) => {
-  const [storedBook, setStoredBook] = useState([]);
-  const [wishList, setWishList] = useState([]);
+  const [storedBook, setStoredBook] = useState(() => loadList("readList"));
+  const [wishList, setWishList] = useState(() => loadList("wishList"));
+
+  useEffect(() => {
+    localStorage.setItem("readList", JSON.stringify(storedBook));
+  }, [storedBook]);
+
+  useEffect(() => {
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  }, [wishList]);
 
   const handleMarkAsRead = (currentBook) => {
     const isExistBook = storedBook.find(

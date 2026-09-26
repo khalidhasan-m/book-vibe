@@ -1,18 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { BookContext } from "../../context/BookProvider";
 import BookCard from "../ui/BookCard";
 
 const ReadListBook = ({ sortingType }) => {
   const { storedBook } = useContext(BookContext);
-  console.log(storedBook, "BookContext");
-    
-    useEffect(() => {
-      if (sortingType === "Pages") {
-        storedBook.sort((a, b) => a.pages - b.pages);
-      } else if (sortingType === "Rating") {
-        storedBook.sort((a, b) => b.rating - a.rating);
-      }
-    }, [sortingType, storedBook]);
+
+  const sortedBooks = [...storedBook];
+  if (sortingType === "Pages") {
+    sortedBooks.sort((a, b) => a.totalPages - b.totalPages);
+  } else if (sortingType === "Rating") {
+    sortedBooks.sort((a, b) => b.rating - a.rating);
+  }
 
   if (storedBook.length === 0) {
     return (
@@ -28,7 +26,7 @@ const ReadListBook = ({ sortingType }) => {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-9 gap-6">
-        {storedBook.map((book, index) => (
+        {sortedBooks.map((book, index) => (
           <BookCard key={index} book={book} />
         ))}
       </div>

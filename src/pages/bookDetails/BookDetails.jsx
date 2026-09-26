@@ -14,6 +14,16 @@ const BookDetails = () => {
   const books = useLoaderData();
   // console.log(books, "books");
   const expectedBook = books.find((book) => book.bookId == id);
+
+  const { handleMarkAsRead, handleAddToWishList } = useContext(BookContext);
+
+  if (!expectedBook) {
+    return (
+      <div className="container mx-auto mt-13 py-20 text-center">
+        <h2 className="text-3xl font-bold">Book not found</h2>
+      </div>
+    );
+  }
   // console.log(expectedBook, "expectedBook");
   const {
     // bookId,
@@ -29,11 +39,10 @@ const BookDetails = () => {
     yearOfPublishing,
   } = expectedBook;
 
-  const { handleMarkAsRead, handleAddToWishList } = useContext(BookContext);
   console.log(handleMarkAsRead, handleAddToWishList, "BookContext");
 
   return (
-    <div className="container mx-auto mt-13 grid grid-cols-2 bg-base-100 shadow-sm">
+    <div className="container mx-auto mt-13 grid grid-cols-1 md:grid-cols-2 bg-base-100 shadow-sm">
       <figure className="p-10 w-full flex items-center justify-center bg-gray-300/10 rounded-xl">
         <img src={image} alt={bookName} className="h-150 rounded-md" />
       </figure>

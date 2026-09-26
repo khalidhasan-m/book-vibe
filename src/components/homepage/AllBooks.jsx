@@ -1,10 +1,8 @@
-import { use } from "react";
 import BookCard from "../ui/BookCard";
-
-const booksPromise = fetch("/booksData.json").then((res) => res.json());
+import booksData from "../../data/booksData.json";
 
 const AllBooks = () => {
-  const books = use(booksPromise);
+  const books = booksData;
   console.log(books, "books");
   return (
     <div className="my-12 container mx-auto">

@@ -1,11 +1,12 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Homepage from "../pages/homepage/Homepage";
 import Books from "../pages/books/Books";
 import Errorpage from "../pages/errorpage/Errorpage";
 import BookDetails from "../pages/bookDetails/BookDetails";
+import booksData from "../data/booksData.json";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
       {
         path: "/bookDetails/:id",
         element: <BookDetails />,
-        loader: () => fetch("/booksData.json"),
+        loader: () => booksData,
       },
       {
         path: "*",

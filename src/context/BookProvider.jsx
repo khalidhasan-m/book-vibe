@@ -63,6 +63,22 @@ const BookProvider = ({ children }) => {
     console.log(currentBook, wishList, "book");
   };
 
+  const handleRemoveFromReadList = (bookId) => {
+    const removedBook = storedBook.find((book) => book.bookId === bookId);
+    setStoredBook(storedBook.filter((book) => book.bookId !== bookId));
+    if (removedBook) {
+      toast.info(`${removedBook.bookName} removed from read list.`);
+    }
+  };
+
+  const handleRemoveFromWishList = (bookId) => {
+    const removedBook = wishList.find((book) => book.bookId === bookId);
+    setWishList(wishList.filter((book) => book.bookId !== bookId));
+    if (removedBook) {
+      toast.info(`${removedBook.bookName} removed from wishlist.`);
+    }
+  };
+
   const data = {
     storedBook,
     wishList,
@@ -70,6 +86,8 @@ const BookProvider = ({ children }) => {
     setWishList,
     handleAddToWishList,
     handleMarkAsRead,
+    handleRemoveFromReadList,
+    handleRemoveFromWishList,
   };
   return <BookContext.Provider value={data}>{children}</BookContext.Provider>;
 };

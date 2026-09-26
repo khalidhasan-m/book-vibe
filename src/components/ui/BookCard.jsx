@@ -1,7 +1,7 @@
 import { FaRegStar } from "react-icons/fa";
 import { Link } from "react-router";
 
-const BookCard = ({book}) => {
+const BookCard = ({ book, onRemove }) => {
   return (
     <Link to={`/bookDetails/${book.bookId}`} className="card bg-base-100 shadow-sm border border-gray-100 p-6">
       <figure className="p-6 bg-base-200">
@@ -28,6 +28,18 @@ const BookCard = ({book}) => {
             <FaRegStar />
           </div>
         </div>
+        {onRemove && (
+          <button
+            className="btn btn-outline btn-error w-full mt-4"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onRemove();
+            }}
+          >
+            Remove
+          </button>
+        )}
       </div>
     </Link>
   );

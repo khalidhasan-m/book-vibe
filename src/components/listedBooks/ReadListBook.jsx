@@ -3,7 +3,7 @@ import { BookContext } from "../../context/BookProvider";
 import BookCard from "../ui/BookCard";
 
 const ReadListBook = ({ sortingType }) => {
-  const { storedBook } = useContext(BookContext);
+  const { storedBook, handleRemoveFromReadList } = useContext(BookContext);
 
   const sortedBooks = [...storedBook];
   if (sortingType === "Pages") {
@@ -27,7 +27,11 @@ const ReadListBook = ({ sortingType }) => {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-9 gap-6">
         {sortedBooks.map((book, index) => (
-          <BookCard key={index} book={book} />
+          <BookCard
+            key={index}
+            book={book}
+            onRemove={() => handleRemoveFromReadList(book.bookId)}
+          />
         ))}
       </div>
     </div>

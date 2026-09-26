@@ -5,6 +5,7 @@ import Books from "../pages/books/Books";
 import Errorpage from "../pages/errorpage/Errorpage";
 import BookDetails from "../pages/bookDetails/BookDetails";
 import PageToRead from "../pages/pageToRead/PageToRead";
+import RequireAuth from "../layout/RequireAuth";
 import booksData from "../data/booksData.json";
 
 export const router = createHashRouter([
@@ -18,15 +19,27 @@ export const router = createHashRouter([
       },
       {
         path: "/books",
-        element: <Books />,
+        element: (
+          <RequireAuth>
+            <Books />
+          </RequireAuth>
+        ),
       },
       {
         path: "/page-to-read",
-        element: <PageToRead />,
+        element: (
+          <RequireAuth>
+            <PageToRead />
+          </RequireAuth>
+        ),
       },
       {
         path: "/bookDetails/:id",
-        element: <BookDetails />,
+        element: (
+          <RequireAuth>
+            <BookDetails />
+          </RequireAuth>
+        ),
         loader: () => booksData,
       },
       {

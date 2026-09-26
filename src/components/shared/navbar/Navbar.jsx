@@ -22,26 +22,30 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to={"/books"}
-          className={({ isActive }) =>
-            `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
-          }
-        >
-          Listed Books
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/page-to-read"}
-          className={({ isActive }) =>
-            `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to={"/books"}
+              className={({ isActive }) =>
+                `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
+              }
+            >
+              Listed Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/page-to-read"}
+              className={({ isActive }) =>
+                `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (

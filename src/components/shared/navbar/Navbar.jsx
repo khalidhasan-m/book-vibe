@@ -1,6 +1,14 @@
+import { useContext, useState } from "react";
 import { NavLink } from "react-router";
+import { AuthContext } from "../../../context/AuthProvider";
+import AuthModal from "../auth/AuthModal";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const [authMode, setAuthMode] = useState(null);
+  const displayName =
+    user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Account";
+
   const links = (
     <>
       <li>
@@ -70,9 +78,42 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-2">
-        <button className="btn bg-[#23BE0A] text-white">Sign In</button>
-        <button className="btn bg-[#59C6D2] text-white">Sign Up</button>
+        {user ? (
+          <>
+            <span className="hidden sm:block font-semibold text-[#23BE0A]">
+              Hi, {displayName}
+            </span>
+            <button
+              className="btn bg-[#59C6D2] text-white"
+              onClick={() => logout()}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="btn bg-[#23BE0A] text-white"
+              onClick={() => setAuthMode("login")}
+            >
+              Sign In
+            </button>
+            <button
+              className="btn bg-[#59C6D2] text-white"
+              onClick={() => setAuthMode("signup")}
+            >
+              Sign Up
+            </button>
+          </>
+        )}
       </div>
+      {authMode && (
+        <AuthModal
+          key={authMode}
+          mode={authMode}
+          onClose={() => setAuthMode(null)}
+        />
+      )}
     </div>
   );
 };

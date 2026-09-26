@@ -31,7 +31,7 @@ const Navbar = () => {
             `font-semibold mr-1 ${isActive ? "text-green-500 border border-green-500" : ""}`
           }
         >
-          Page to Read
+          Dashboard
         </NavLink>
       </li>
     </>

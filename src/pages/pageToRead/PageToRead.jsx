@@ -24,7 +24,7 @@ const PageToRead = () => {
 
   return (
     <div className="container mx-auto mt-13">
-      <h2 className="text-3xl font-bold text-center">Page to Read</h2>
+      <h2 className="text-3xl font-bold text-center">Reading Dashboard</h2>
       <p className="text-center text-gray-600 mt-2">
         Your reading dashboard at a glance.
       </p>

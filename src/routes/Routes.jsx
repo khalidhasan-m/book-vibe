@@ -20,6 +20,10 @@ export const router = createHashRouter([
         element: <Books />,
       },
       {
+        path: "/page-to-read",
+        element: <Books />,
+      },
+      {
         path: "/bookDetails/:id",
         element: <BookDetails />,
         loader: () => booksData,
